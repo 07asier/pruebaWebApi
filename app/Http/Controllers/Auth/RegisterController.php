@@ -81,4 +81,11 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    protected function registered(Request $request, $user)
+    {
+        $user->generateToken();
+
+        return response()->json(['data' => $user->toArray()], 201);
+    }
+
 }
